@@ -1,12 +1,312 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-<meta charset="utf-8">
-<title>labo.mobi</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>labo.mobi</title>
+  <meta name="description" content="labo.mobi はサービス開発とコンサルティングを提供しています。モバイルアプリ・Webサービスの企画・設計・開発から、事業戦略・技術選定・プロダクトグロースまで一貫してサポートします。">
+  <link rel="canonical" href="https://labo.mobi/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://labo.mobi/">
+  <meta property="og:title" content="labo.mobi">
+  <meta property="og:description" content="サービス開発とコンサルティングを提供しています。モバイルアプリ・Webサービスの企画・設計・開発、事業戦略・技術選定をサポートします。">
+  <meta property="og:site_name" content="labo.mobi">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="labo.mobi">
+  <meta name="twitter:description" content="サービス開発とコンサルティングを提供しています。モバイルアプリ・Webサービスの企画から開発、事業戦略・技術選定をサポートします。">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+      color: #111;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    header {
+      border-bottom: 3px solid #0aa5dc;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .lang-switch {
+      display: flex;
+      border: 1px solid #ccc;
+      overflow: hidden;
+    }
+    .lang-switch button {
+      background: none;
+      border: none;
+      padding: 0.3rem 0.9rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #999;
+      transition: all 0.15s;
+    }
+    .lang-switch button.active {
+      background: #0aa5dc;
+      color: #fff;
+    }
+    .lang-switch button:not(.active):hover {
+      background: #f5f5f5;
+      color: #111;
+    }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .hero {
+      margin-bottom: 5rem;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #0aa5dc;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: #555;
+    }
+
+    section {
+      margin-bottom: 4.5rem;
+    }
+    section h2 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #0aa5dc;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-grid {
+      display: grid;
+      gap: 1px;
+      background: #e8e8e8;
+      border: 1px solid #e8e8e8;
+    }
+    .service-card {
+      background: #fff;
+      padding: 2rem;
+    }
+    .service-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .service-card p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .product-card {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.5rem;
+      border: 1px solid #e0e0e0;
+      text-decoration: none;
+      color: #111;
+      transition: border-color 0.15s;
+    }
+    .product-card:hover { border-color: #0aa5dc; }
+    .product-card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 13px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .product-card-icon svg { width: 100%; height: 100%; }
+    .product-card-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .product-card-desc {
+      font-size: 0.88rem;
+      color: #666;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .contact-list a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #111;
+      padding: 1rem 1.25rem;
+      border: 1px solid #e0e0e0;
+      transition: border-color 0.15s, color 0.15s;
+      font-size: 0.95rem;
+    }
+    .contact-list a:hover {
+      border-color: #0aa5dc;
+      color: #0aa5dc;
+    }
+    .contact-list svg { flex-shrink: 0; }
+
+    footer {
+      border-top: 1px solid #e8e8e8;
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    [lang="ja"] .en,
+    [lang="en"] .ja { display: none; }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem; }
+      main { padding: 3rem 1.25rem; }
+      .hero h1 { font-size: 2rem; }
+    }
+  </style>
 </head>
 <body>
-<footer>
-<p><small>&copy; labo.mobi</small></p>
-</footer>
+
+  <header>
+    <div class="logo">labo.mobi</div>
+    <div class="lang-switch">
+      <button id="btn-ja" class="active" onclick="setLang('ja')">JP</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="hero">
+      <h1>labo.mobi</h1>
+      <p class="ja">サービス開発とコンサルティングを提供しています。</p>
+      <p class="en">We provide service development and consulting.</p>
+    </div>
+
+    <section>
+      <h2>Services</h2>
+      <div class="service-grid">
+        <div class="service-card">
+          <h3 class="ja">サービス開発</h3>
+          <h3 class="en">Service Development</h3>
+          <p class="ja">モバイルアプリ・Webサービスの企画・設計・開発を一貫してサポートします。</p>
+          <p class="en">End-to-end support for mobile apps and web services, from planning and design to development.</p>
+        </div>
+        <div class="service-card">
+          <h3 class="ja">コンサルティング</h3>
+          <h3 class="en">Consulting</h3>
+          <p class="ja">事業戦略・技術選定・プロダクトグロースに関する課題解決をサポートします。</p>
+          <p class="en">Supporting problem-solving around business strategy, technology selection, and product growth.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Products</h2>
+      <a href="/travelnote/" class="product-card">
+        <div class="product-card-icon">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="100" fill="#1B2A4A"/>
+            <ellipse cx="50" cy="50" r="28" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"/>
+            <ellipse cx="50" cy="50" rx="28" ry="16" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"/>
+            <line x1="50" y1="22" x2="50" y2="78" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"/>
+            <line x1="22" y1="50" x2="78" y2="50" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"/>
+            <path d="M35 39 C38 36, 44 35, 47 39 C48 42, 45 47, 40 47 C36 47, 33 44, 35 39Z" fill="#C9933A" opacity="0.95"/>
+            <path d="M53 37 C56 34, 61 36, 63 40 C64 44, 61 47, 58 45 C55 44, 52 41, 53 37Z" fill="#E8B76A" opacity="0.9"/>
+            <path d="M37 52 C40 49, 46 49, 48 53 C49 56, 46 59, 42 58 C38 58, 36 55, 37 52Z" fill="#B85C38" opacity="0.95"/>
+            <path d="M56 53 C59 50, 64 51, 65 55 C66 58, 64 61, 61 60 C58 59, 55 57, 56 53Z" fill="#C9933A" opacity="0.8"/>
+            <circle cx="50" cy="50" r="28" stroke="#C9933A" stroke-width="3.5" fill="none"/>
+            <path d="M69 69 L74 74" stroke="#E8B76A" stroke-width="3" stroke-linecap="round"/>
+            <path d="M66 66 C68 63, 73 64, 75 68 C77 72, 74 75, 70 74 C66 73, 65 69, 66 66Z" fill="#E8B76A" opacity="0.95"/>
+          </svg>
+        </div>
+        <div>
+          <div class="product-card-name">TravelNote</div>
+          <p class="product-card-desc ja">訪問国・都道府県、フライトを記録する旅のトラッキングアプリ</p>
+          <p class="product-card-desc en">A travel tracking app to record visited countries, regions, and flights</p>
+        </div>
+      </a>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <ul class="contact-list">
+        <li>
+          <a href="https://www.facebook.com/labo.mobi" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#0aa5dc">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            Facebook Page
+          </a>
+        </li>
+        <li>
+          <a href="mailto:support@labo.mobi">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0aa5dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            support@labo.mobi
+          </a>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; labo.mobi</p>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "labo.mobi",
+    "url": "https://labo.mobi",
+    "email": "support@labo.mobi",
+    "sameAs": ["https://www.facebook.com/labo.mobi"],
+    "description": "サービス開発とコンサルティングを提供しています。",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "サービス開発",
+        "description": "モバイルアプリ・Webサービスの企画・設計・開発を一貫してサポートします。"
+      },
+      {
+        "@type": "Offer",
+        "name": "コンサルティング",
+        "description": "事業戦略・技術選定・プロダクトグロースに関する課題解決をサポートします。"
+      }
+    ]
+  }
+  </script>
+  <script>
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+  </script>
+
 </body>
 </html>

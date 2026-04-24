@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TravelNote — 旅のトラッキングアプリ</title>
+  <meta name="description" content="TravelNote は訪問国・都道府県、フライトを記録する旅のトラッキングアプリです。あなたの旅の軌跡をマップで可視化し、総飛行距離や訪問国数を管理しましょう。">
+  <link rel="canonical" href="https://labo.mobi/travelnote/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://labo.mobi/travelnote/">
+  <meta property="og:title" content="TravelNote — 旅のトラッキングアプリ">
+  <meta property="og:description" content="訪れた国・都道府県、フライトを記録して、あなたの旅の軌跡を残そう。">
+  <meta property="og:site_name" content="labo.mobi">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="TravelNote — 旅のトラッキングアプリ">
+  <meta name="twitter:description" content="訪れた国・都道府県、フライトを記録する旅のトラッキングアプリ。あなたの旅の軌跡をマップで可視化しよう。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #1B2A4A;
+      --gold:       #C9933A;
+      --gold-light: #E8B76A;
+      --gold-pale:  #F5E4C4;
+      --terra:      #B85C38;
+      --cream:      #F9F4EC;
+      --warm-gray:  #8A7F72;
+      --white:      #FFFFFF;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      line-height: 1.7;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--navy);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .header-logo svg { width: 36px; height: 36px; }
+    .header-logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .back-link {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--gold-light); }
+
+    .lang-switch {
+      display: flex;
+      border: 1px solid rgba(255,255,255,0.2);
+      overflow: hidden;
+    }
+    .lang-switch button {
+      background: none;
+      border: none;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      transition: all 0.15s;
+    }
+    .lang-switch button.active {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .lang-switch button:not(.active):hover {
+      color: var(--white);
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--navy);
+      padding: 5rem 2rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,147,58,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-icon {
+      width: 96px; height: 96px;
+      margin: 0 auto 1.5rem;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 0 0 3px rgba(201,147,58,0.5), 0 12px 40px rgba(0,0,0,0.35);
+    }
+    .hero-icon svg { width: 100%; height: 100%; }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .hero-tagline {
+      font-size: 0.8rem;
+      font-weight: 300;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .store-coming-soon {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .store-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 18px;
+      border-radius: 10px;
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.15);
+      text-decoration: none;
+      min-width: 150px;
+      transition: filter 0.15s;
+      filter: brightness(0.55);
+      cursor: default;
+      pointer-events: none;
+    }
+    .store-btn.available {
+      filter: none;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+    .store-btn.available:hover { filter: brightness(0.85); }
+    .store-btn svg { flex-shrink: 0; }
+    .store-btn-label { text-align: left; }
+    .store-btn-sub { display: block; font-size: 0.6rem; font-weight: 400; color: rgba(255,255,255,0.75); letter-spacing: 0.03em; }
+    .store-btn-main { display: block; font-size: 1rem; font-weight: 600; color: #fff; line-height: 1.2; }
+
+    /* ── Main content ── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 1.5rem;
+    }
+
+    section { margin-bottom: 5rem; }
+
+    /* ── Screenshots ── */
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .screenshot-img {
+      width: 100%;
+      aspect-ratio: 9/19.5;
+      border-radius: 16px;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+
+    /* ── Features ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .feature-card {
+      background: var(--white);
+      padding: 2rem;
+    }
+    .feature-icon {
+      width: 40px; height: 40px;
+      background: var(--gold-pale);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .feature-icon svg { width: 20px; height: 20px; }
+    .feature-card h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: var(--navy);
+    }
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--warm-gray);
+      line-height: 1.6;
+    }
+
+    /* ── Special Thanks ── */
+    .thanks-card {
+      padding: 2rem;
+      border-left: 3px solid var(--gold);
+      background: var(--white);
+    }
+    .thanks-card p {
+      font-size: 0.95rem;
+      color: var(--warm-gray);
+      line-height: 1.9;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--navy);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--gold-light); }
+    footer p {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* ── Lang visibility ── */
+    [lang="ja"] .en,
+    [lang="en"] .ja { display: none; }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem; }
+      .hero { padding: 3.5rem 1.25rem 4rem; }
+      .hero h1 { font-size: 2.2rem; }
+      main { padding: 3rem 1.25rem 4rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .screenshots { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+      .header-right { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/" class="header-logo">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" rx="22" fill="#1B2A4A"/>
+        <ellipse cx="50" cy="50" r="28" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"/>
+        <ellipse cx="50" cy="50" rx="28" ry="16" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"/>
+        <line x1="50" y1="22" x2="50" y2="78" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"/>
+        <line x1="22" y1="50" x2="78" y2="50" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"/>
+        <path d="M35 39 C38 36, 44 35, 47 39 C48 42, 45 47, 40 47 C36 47, 33 44, 35 39Z" fill="#C9933A" opacity="0.95"/>
+        <path d="M53 37 C56 34, 61 36, 63 40 C64 44, 61 47, 58 45 C55 44, 52 41, 53 37Z" fill="#E8B76A" opacity="0.9"/>
+        <path d="M37 52 C40 49, 46 49, 48 53 C49 56, 46 59, 42 58 C38 58, 36 55, 37 52Z" fill="#B85C38" opacity="0.95"/>
+        <path d="M56 53 C59 50, 64 51, 65 55 C66 58, 64 61, 61 60 C58 59, 55 57, 56 53Z" fill="#C9933A" opacity="0.8"/>
+        <circle cx="50" cy="50" r="28" stroke="#C9933A" stroke-width="3.5" fill="none"/>
+        <path d="M69 69 L74 74" stroke="#E8B76A" stroke-width="3" stroke-linecap="round"/>
+        <path d="M66 66 C68 63, 73 64, 75 68 C77 72, 74 75, 70 74 C66 73, 65 69, 66 66Z" fill="#E8B76A" opacity="0.95"/>
+      </svg>
+      <span class="header-logo-name">TravelNote</span>
+    </a>
+    <div class="header-right">
+      <a href="/" class="back-link ja">← labo.mobi</a>
+      <a href="/" class="back-link en">← labo.mobi</a>
+      <div class="lang-switch">
+        <button id="btn-ja" class="active" onclick="setLang('ja')">JP</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-icon">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#1B2A4A"/>
+        <ellipse cx="50" cy="50" r="28" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"/>
+        <ellipse cx="50" cy="50" rx="28" ry="16" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"/>
+        <line x1="50" y1="22" x2="50" y2="78" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"/>
+        <line x1="22" y1="50" x2="78" y2="50" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"/>
+        <path d="M35 39 C38 36, 44 35, 47 39 C48 42, 45 47, 40 47 C36 47, 33 44, 35 39Z" fill="#C9933A" opacity="0.95"/>
+        <path d="M53 37 C56 34, 61 36, 63 40 C64 44, 61 47, 58 45 C55 44, 52 41, 53 37Z" fill="#E8B76A" opacity="0.9"/>
+        <path d="M37 52 C40 49, 46 49, 48 53 C49 56, 46 59, 42 58 C38 58, 36 55, 37 52Z" fill="#B85C38" opacity="0.95"/>
+        <path d="M56 53 C59 50, 64 51, 65 55 C66 58, 64 61, 61 60 C58 59, 55 57, 56 53Z" fill="#C9933A" opacity="0.8"/>
+        <circle cx="50" cy="50" r="28" stroke="#C9933A" stroke-width="3.5" fill="none"/>
+        <path d="M69 69 L74 74" stroke="#E8B76A" stroke-width="3" stroke-linecap="round"/>
+        <path d="M66 66 C68 63, 73 64, 75 68 C77 72, 74 75, 70 74 C66 73, 65 69, 66 66Z" fill="#E8B76A" opacity="0.95"/>
+      </svg>
+    </div>
+
+    <h1>TravelNote</h1>
+    <p class="hero-tagline">Your world, your story</p>
+    <p class="hero-desc ja">訪れた国・都道府県、フライトを記録して、あなたの旅の軌跡を残そう。</p>
+    <p class="hero-desc en">Record the countries, regions, and flights you've visited — and keep the story of your journey alive.</p>
+
+    <p class="store-coming-soon ja">近日公開</p>
+    <p class="store-coming-soon en">Coming Soon</p>
+    <div class="store-buttons">
+      <a href="#" class="store-btn">
+        <svg width="18" height="22" viewBox="0 0 384 512" fill="white">
+          <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-16.9 75.2-16.9 31.8 0 48.3 16.9 76.4 16.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.1-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+        </svg>
+        <span class="store-btn-label">
+          <span class="store-btn-sub">Download on the</span>
+          <span class="store-btn-main">App Store</span>
+        </span>
+      </a>
+      <a href="#" class="store-btn">
+        <svg width="20" height="22" viewBox="0 0 20 22">
+          <path d="M0.43 21.69C0.16 21.4 0 21 0 20.5V1.5C0 1 0.16 0.6 0.43 0.31L0.5 0.39L11.17 11.06V11.25L0.5 21.62L0.43 21.69Z" fill="#32BBFF"/>
+          <path d="M14.67 14.6L11.17 11.1V10.9L14.67 7.4L14.78 7.46L18.9 9.83C20.1 10.52 20.1 11.48 18.9 12.17L14.78 14.54L14.67 14.6Z" fill="#FFB300"/>
+          <path d="M14.78 14.54L11.17 10.97L0.43 21.69C0.84 22.13 1.52 22.18 2.28 21.76L14.78 14.54Z" fill="#FF3333"/>
+          <path d="M14.78 7.46L2.28 0.24C1.52 -0.18 0.84 -0.13 0.43 0.31L11.17 11.03L14.78 7.46Z" fill="#00E676"/>
+        </svg>
+        <span class="store-btn-label">
+          <span class="store-btn-sub">Get it on</span>
+          <span class="store-btn-main">Google Play</span>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- Screenshots -->
+    <section>
+      <div class="section-label ja">スクリーンショット</div>
+      <div class="section-label en">Screenshots</div>
+      <div class="screenshots">
+        <img src="images/screen_01.png" alt="TravelNote スクリーンショット 1" class="screenshot-img">
+        <img src="images/screen_02.png" alt="TravelNote スクリーンショット 2" class="screenshot-img">
+        <img src="images/screen_03.png" alt="TravelNote スクリーンショット 3" class="screenshot-img">
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section>
+      <div class="section-label ja">機能</div>
+      <div class="section-label en">Features</div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C9933A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h3 class="ja">訪問国・都道府県の記録</h3>
+          <h3 class="en">Country & Region Tracking</h3>
+          <p class="ja">訪れた国や都道府県をマップ上で可視化。あなたの旅の足跡を一目で確認できます。</p>
+          <p class="en">Visualize visited countries and regions on a map. See your travel footprint at a glance.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C9933A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 4c-1 0-1.5.5-3.5 2.5L8 5 2 8.2l5.2 1.3L9 12H6l-1 1v2l2 1v2l2 1h2l1-1v-3l1.8-.2"/>
+            </svg>
+          </div>
+          <h3 class="ja">フライト記録</h3>
+          <h3 class="en">Flight Records</h3>
+          <p class="ja">搭乗したフライトを記録して、総飛行距離や利用路線を管理しましょう。</p>
+          <p class="en">Log your flights and keep track of total distance traveled and routes taken.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C9933A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+              <polyline points="17 6 23 6 23 12"/>
+            </svg>
+          </div>
+          <h3 class="ja">クラウド同期</h3>
+          <h3 class="en">Cloud Sync</h3>
+          <p class="ja">データはクラウドに安全に保存。複数デバイスからいつでもアクセスできます。</p>
+          <p class="en">Your data is securely stored in the cloud and accessible from all your devices anytime.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C9933A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <h3 class="ja">かんたんサインイン</h3>
+          <h3 class="en">Easy Sign-in</h3>
+          <p class="ja">メール、Google、Appleアカウントでサインイン。すぐに使い始められます。</p>
+          <p class="en">Sign in with email, Google, or Apple. Get started right away.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Special Thanks -->
+    <section>
+      <div class="section-label">Special Thanks</div>
+      <div class="thanks-card">
+        <p class="ja">TravelNote は、長年愛用していた旅行記録サービス「Tripnote」への感謝と、そのサービス終了をきっかけに生まれました。<br><br>素晴らしい旅の記録体験をありがとう、Tripnote。</p>
+        <p class="en">TravelNote was born out of gratitude for Tripnote — a beloved travel recording service we used for years — and inspired by the announcement of its end of service.<br><br>Thank you for the wonderful journey, Tripnote.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/travelnote/privacy.html" class="ja">プライバシーポリシー</a>
+      <a href="/travelnote/privacy.html" class="en">Privacy Policy</a>
+      <a href="mailto:support@labo.mobi">support@labo.mobi</a>
+    </div>
+    <p>&copy; labo.mobi</p>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "TravelNote",
+    "description": "訪問国・都道府県、フライトを記録する旅のトラッキングアプリ",
+    "applicationCategory": "TravelApplication",
+    "operatingSystem": "iOS, Android",
+    "url": "https://labo.mobi/travelnote/",
+    "author": {
+      "@type": "Organization",
+      "name": "labo.mobi",
+      "url": "https://labo.mobi"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    }
+  }
+  </script>
+  <script>
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+  </script>
+
+</body>
+</html>
