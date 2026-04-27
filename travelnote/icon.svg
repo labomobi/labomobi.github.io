@@ -1,0 +1,14 @@
+<svg class="logo-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="100" rx="22" fill="#1B2A4A"></rect>
+      <ellipse cx="50" cy="50" r="28" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"></ellipse>
+      <ellipse cx="50" cy="50" rx="28" ry="16" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"></ellipse>
+      <line x1="50" y1="22" x2="50" y2="78" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"></line>
+      <line x1="22" y1="50" x2="78" y2="50" stroke="#C9933A" stroke-width="2.5" stroke-dasharray="3 3" opacity="0.5"></line>
+      <path d="M35 39 C38 36, 44 35, 47 39 C48 42, 45 47, 40 47 C36 47, 33 44, 35 39Z" fill="#C9933A" opacity="0.95"></path>
+      <path d="M53 37 C56 34, 61 36, 63 40 C64 44, 61 47, 58 45 C55 44, 52 41, 53 37Z" fill="#E8B76A" opacity="0.9"></path>
+      <path d="M37 52 C40 49, 46 49, 48 53 C49 56, 46 59, 42 58 C38 58, 36 55, 37 52Z" fill="#B85C38" opacity="0.95"></path>
+      <path d="M56 53 C59 50, 64 51, 65 55 C66 58, 64 61, 61 60 C58 59, 55 57, 56 53Z" fill="#C9933A" opacity="0.8"></path>
+      <circle cx="50" cy="50" r="28" stroke="#C9933A" stroke-width="3.5" fill="none"></circle>
+      <path d="M69 69 L74 74" stroke="#E8B76A" stroke-width="3" stroke-linecap="round"></path>
+      <path d="M66 66 C68 63, 73 64, 75 68 C77 72, 74 75, 70 74 C66 73, 65 69, 66 66Z" fill="#E8B76A" opacity="0.95"></path>
+    </svg>
