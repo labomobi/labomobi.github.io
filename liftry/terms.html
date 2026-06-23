@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>利用規約 — liftry</title>
+  <link rel="icon" type="image/svg+xml" href="/liftry/icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:   #1A1F2E;
+      --blue:  #6C7FD8;
+      --haze:  #A5B0E4;
+      --mist:  #F0F4FF;
+      --bg:    #F7F8FC;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.8;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--ink);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .header-logo-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--ink);
+      border: 1px solid rgba(108,127,216,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .header-logo-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .header-logo-name span { color: var(--blue); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .back-link {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--haze); }
+
+    .lang-switch {
+      display: flex;
+      border: 1px solid rgba(255,255,255,0.2);
+      overflow: hidden;
+    }
+    .lang-switch button {
+      background: none;
+      border: none;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      transition: all 0.15s;
+    }
+    .lang-switch button.active {
+      background: var(--blue);
+      color: var(--white);
+    }
+    .lang-switch button:not(.active):hover { color: var(--white); }
+
+    /* ── Content ── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+    .updated {
+      font-size: 0.82rem;
+      color: var(--haze);
+      margin-bottom: 2.5rem;
+    }
+    .intro { margin-bottom: 2rem; font-size: 0.94rem; color: #4b5563; }
+
+    h2 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(108,127,216,0.18);
+      color: var(--ink);
+    }
+    p, li { font-size: 0.92rem; color: #4b5563; }
+    p + p { margin-top: 0.6rem; }
+    ul { padding-left: 1.5rem; margin-top: 0.5rem; }
+    li { margin-bottom: 0.3rem; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--ink);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.22);
+    }
+
+    /* ── Lang visibility ── */
+    [lang="ja"] .en,
+    [lang="en"] .ja { display: none; }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem; }
+      main { padding: 2.5rem 1.25rem 4rem; }
+      .header-right { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/liftry/" class="header-logo">
+      <div class="header-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 56 56" fill="none">
+          <line x1="14" y1="28" x2="42" y2="28" stroke="#6C7FD8" stroke-width="3.5" stroke-linecap="round"/>
+          <rect x="10" y="22" width="6" height="12" rx="2" fill="#6C7FD8"/>
+          <rect x="40" y="22" width="6" height="12" rx="2" fill="#6C7FD8"/>
+          <rect x="6" y="24" width="5" height="8" rx="1.5" fill="#8E9FE8" opacity="0.7"/>
+          <rect x="45" y="24" width="5" height="8" rx="1.5" fill="#8E9FE8" opacity="0.7"/>
+          <circle cx="28" cy="28" r="3" fill="#F0F4FF"/>
+        </svg>
+      </div>
+      <span class="header-logo-name">lift<span>ry</span></span>
+    </a>
+    <div class="header-right">
+      <a href="/liftry/" class="back-link ja">← アプリページへ</a>
+      <a href="/liftry/" class="back-link en">← App Page</a>
+      <div class="lang-switch">
+        <button id="btn-ja" class="active" onclick="setLang('ja')">JP</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Japanese -->
+    <div class="ja">
+      <h1>利用規約</h1>
+      <p class="updated">最終更新日：2026年6月23日</p>
+      <p class="intro">本利用規約（以下「本規約」）は、labo.mobi（以下「当社」）が提供するアプリ「liftry」（以下「本アプリ」）の利用条件を定めるものです。本アプリをご利用いただくことで、本規約に同意したものとみなします。</p>
+
+      <h2>1. サービスの概要</h2>
+      <p>本アプリは、筋力トレーニングの記録・管理・分析を目的としたモバイルアプリケーションです。一部機能はプレミアムサブスクリプション（有料）でのみご利用いただけます。</p>
+
+      <h2>2. 利用資格</h2>
+      <p>本アプリは13歳以上の方を対象としています。13歳未満の方は本アプリを利用できません。</p>
+
+      <h2>3. アカウント</h2>
+      <p>本アプリの利用には、メールアドレスまたはApple/Googleアカウントによるユーザー登録が必要です。アカウント情報の管理はお客様ご自身の責任において行ってください。アカウント情報の漏洩により生じた損害について、当社は責任を負いません。</p>
+
+      <h2>4. サブスクリプションと支払い</h2>
+      <ul>
+        <li>プレミアムプランは月額または年額のサブスクリプション形式で提供されます。</li>
+        <li>料金はApp Store（iOS）またはGoogle Play（Android）を通じて請求されます。</li>
+        <li>サブスクリプションは各期間終了の24時間前までにキャンセルしない限り、自動的に更新されます。</li>
+        <li>無料トライアル期間が提供される場合、トライアル終了後に自動的に有料プランへ移行します。</li>
+        <li>キャンセルは各ストアのアカウント設定から行ってください。アプリ内からのキャンセルは承っておりません。</li>
+        <li>購入済みのサブスクリプション料金は、法令に基づく場合を除き返金されません。</li>
+      </ul>
+
+      <h2>5. 禁止行為</h2>
+      <p>以下の行為を禁止します。</p>
+      <ul>
+        <li>本アプリのリバースエンジニアリング・改ざん・複製</li>
+        <li>他のユーザーへの迷惑行為・不正アクセス</li>
+        <li>法令または公序良俗に反する利用</li>
+        <li>当社または第三者の知的財産権を侵害する行為</li>
+      </ul>
+
+      <h2>6. 知的財産</h2>
+      <p>本アプリに関するすべての著作権・商標権・その他の知的財産権は当社に帰属します。本規約は、お客様に対してこれらの権利を移転・許諾するものではありません。</p>
+
+      <h2>7. 免責事項</h2>
+      <p>本アプリは現状有姿で提供されます。当社は、本アプリの正確性・完全性・継続的な提供について保証しません。本アプリの利用により生じた損害について、当社は法令の定める範囲を超えて責任を負いません。</p>
+      <p>トレーニング内容に関するアドバイスはあくまで参考情報であり、医療行為の代替にはなりません。身体に不安がある場合は医療専門家にご相談ください。</p>
+
+      <h2>8. サービスの変更・終了</h2>
+      <p>当社は、予告なく本アプリの内容を変更・停止・終了することがあります。これによりお客様に生じた損害について、当社は責任を負いません。</p>
+
+      <h2>9. 利用規約の変更</h2>
+      <p>当社は本規約を改定することがあります。重要な変更がある場合はアプリ内または本ページにてお知らせします。改定後も本アプリを継続してご利用いただいた場合、改定後の規約に同意したものとみなします。</p>
+
+      <h2>10. 準拠法・管轄</h2>
+      <p>本規約は日本法に準拠し、解釈されます。本規約に関する紛争については、東京地方裁判所を第一審の専属的合意管轄裁判所とします。</p>
+
+      <h2>11. お問い合わせ</h2>
+      <p>本規約に関するご質問は以下までご連絡ください。</p>
+      <p>Email: <a href="mailto:support@labo.mobi">support@labo.mobi</a></p>
+    </div>
+
+    <!-- English -->
+    <div class="en">
+      <h1>Terms of Use</h1>
+      <p class="updated">Last updated: June 23, 2026</p>
+      <p class="intro">These Terms of Use ("Terms") govern your use of liftry (the "App") provided by labo.mobi ("we" or "us"). By using the App, you agree to these Terms.</p>
+
+      <h2>1. About the App</h2>
+      <p>liftry is a mobile application for logging, managing, and analyzing strength training workouts. Some features are only available through a paid premium subscription.</p>
+
+      <h2>2. Eligibility</h2>
+      <p>The App is intended for users aged 13 and older. Users under 13 may not use the App.</p>
+
+      <h2>3. Account</h2>
+      <p>Using the App requires registration with an email address or via Apple/Google sign-in. You are responsible for maintaining the confidentiality of your account information. We are not liable for any damages resulting from unauthorized access to your account.</p>
+
+      <h2>4. Subscriptions and Payments</h2>
+      <ul>
+        <li>The premium plan is offered as a monthly or annual subscription.</li>
+        <li>Charges are billed through the App Store (iOS) or Google Play (Android).</li>
+        <li>Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period.</li>
+        <li>If a free trial is offered, it will automatically convert to a paid subscription at the end of the trial period.</li>
+        <li>To cancel, use the account settings in the respective store. In-app cancellation is not available.</li>
+        <li>Subscription fees are non-refundable except as required by applicable law.</li>
+      </ul>
+
+      <h2>5. Prohibited Conduct</h2>
+      <p>You may not:</p>
+      <ul>
+        <li>Reverse engineer, modify, or reproduce the App</li>
+        <li>Harass other users or attempt unauthorized access</li>
+        <li>Use the App in violation of any law or regulation</li>
+        <li>Infringe on the intellectual property rights of us or any third party</li>
+      </ul>
+
+      <h2>6. Intellectual Property</h2>
+      <p>All copyrights, trademarks, and other intellectual property rights in the App belong to us. These Terms do not transfer or license any such rights to you.</p>
+
+      <h2>7. Disclaimer</h2>
+      <p>The App is provided "as is." We make no warranties regarding its accuracy, completeness, or uninterrupted availability. Our liability for damages arising from your use of the App is limited to the extent permitted by applicable law.</p>
+      <p>Any training guidance in the App is for informational purposes only and is not a substitute for professional medical advice. Consult a healthcare professional if you have any health concerns.</p>
+
+      <h2>8. Changes and Termination</h2>
+      <p>We may modify, suspend, or discontinue the App at any time without prior notice. We are not liable for any damages resulting from such changes.</p>
+
+      <h2>9. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. We will notify you of significant changes through the App or on this page. Continued use of the App after any changes constitutes your acceptance of the updated Terms.</p>
+
+      <h2>10. Governing Law</h2>
+      <p>These Terms are governed by and construed in accordance with the laws of Japan. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the Tokyo District Court.</p>
+
+      <h2>11. Contact</h2>
+      <p>For questions about these Terms, please contact us:</p>
+      <p>Email: <a href="mailto:support@labo.mobi">support@labo.mobi</a></p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; labo.mobi</p>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+  </script>
+
+</body>
+</html>
