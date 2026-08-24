@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>mozai — プライバシーを守る、モザイクカメラ</title>
+  <meta name="description" content="mozai はSNS投稿前に顔・テキスト・ナンバープレートをAIが自動でモザイク処理するプライバシー保護カメラアプリです。すべての処理は端末内で完結し、クラウド送信は一切ありません。">
+  <link rel="icon" type="image/svg+xml" href="/mozai/icon.svg">
+  <link rel="canonical" href="https://labo.mobi/mozai/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://labo.mobi/mozai/">
+  <meta property="og:title" content="mozai — プライバシーを守る、モザイクカメラ">
+  <meta property="og:description" content="顔・テキスト・ナンバープレートをAIが自動でモザイク処理。すべて端末内で完結する、プライバシー保護カメラアプリ。">
+  <meta property="og:site_name" content="labo.mobi">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="mozai — プライバシーを守る、モザイクカメラ">
+  <meta name="twitter:description" content="顔・テキスト・ナンバープレートをAIが自動でモザイク処理。すべて端末内で完結する、プライバシー保護カメラアプリ。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0D0800;
+      --surface: #1A1200;
+      --surface2:#0F0A00;
+      --amber:   #FBBF24;
+      --amber2:  #FCD34D;
+      --line:    rgba(255,191,36,0.14);
+      --ink:     #FFFFFF;
+      --muted:   #A08060;
+      --faint:   rgba(255,255,255,0.3);
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface2);
+      border-bottom: 1px solid var(--line);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .header-logo-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .header-logo-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .header-logo-name span { color: var(--amber); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .back-link {
+      font-size: 0.78rem;
+      color: var(--faint);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--amber2); }
+
+    .lang-switch {
+      display: flex;
+      border: 1px solid rgba(255,255,255,0.2);
+      overflow: hidden;
+    }
+    .lang-switch button {
+      background: none;
+      border: none;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      transition: all 0.15s;
+    }
+    .lang-switch button.active {
+      background: var(--amber);
+      color: var(--bg);
+    }
+    .lang-switch button:not(.active):hover { color: var(--ink); }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--bg);
+      padding: 5rem 2rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(251,191,36,0.14) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-icon {
+      width: 96px; height: 96px;
+      margin: 0 auto 1.5rem;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 0 0 3px rgba(251,191,36,0.4), 0 12px 40px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .hero-icon img { width: 100%; height: 100%; display: block; }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .hero-tagline {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.5rem;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.55);
+      max-width: 460px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+
+    .store-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      transition: filter 0.15s;
+      filter: brightness(0.5);
+      cursor: default;
+      pointer-events: none;
+    }
+    .store-btn.available {
+      filter: none;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+    .store-btn.available:hover { filter: brightness(0.85); }
+    .store-btn img { display: block; width: 135px; height: auto; }
+
+    .hero-note {
+      font-size: 0.75rem;
+      color: var(--faint);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Main ── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+    }
+
+    .section-label {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    section { margin-bottom: 5rem; }
+
+    /* ── Screenshots ── */
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .screen-shot {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9/19.5;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    }
+    .screen-shot img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .screen-caption {
+      margin-top: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Features ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .feature-card {
+      background: var(--surface2);
+      padding: 2rem;
+    }
+    .feature-icon {
+      width: 40px; height: 40px;
+      background: var(--surface);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .feature-icon svg { width: 20px; height: 20px; }
+    .feature-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--ink);
+    }
+    .feature-card p {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── Privacy concept ── */
+    .concept-card {
+      padding: 2rem;
+      border-left: 3px solid var(--amber);
+      background: var(--surface2);
+      border-radius: 0 8px 8px 0;
+    }
+    .concept-card p {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+    .concept-stats {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .concept-stat {
+      background: var(--surface);
+      border: 1px solid #3d2e10;
+      border-radius: 12px;
+      padding: 0.9rem 1.25rem;
+      text-align: center;
+    }
+    .concept-stat .num {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--amber);
+      letter-spacing: -0.02em;
+    }
+    .concept-stat .label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--surface2);
+      border-top: 1px solid var(--line);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 0.8rem;
+      color: var(--faint);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--amber2); }
+    footer p {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.18);
+    }
+    .footer-trademark {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.18);
+      max-width: 640px;
+      margin: 0.75rem auto 0;
+      line-height: 1.6;
+    }
+    .footer-trademark p + p { margin-top: 0.2rem; }
+
+    /* ── Lang visibility ── */
+    [lang="ja"] .en,
+    [lang="en"] .ja { display: none; }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem; }
+      .hero { padding: 3.5rem 1.25rem 4rem; }
+      .hero h1 { font-size: 2.2rem; }
+      main { padding: 3rem 1.25rem 4rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .concept-stats { flex-wrap: wrap; }
+      .header-right { gap: 1rem; }
+      .screenshots {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: 68%;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 0.25rem;
+        margin: 0 -1.25rem;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+      .screenshots > div { scroll-snap-align: start; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/" class="header-logo">
+      <img class="header-logo-icon" src="/mozai/icon.svg" alt="mozai">
+      <span class="header-logo-name">mo<span>zai</span></span>
+    </a>
+    <div class="header-right">
+      <a href="/" class="back-link">← labo.mobi</a>
+      <div class="lang-switch">
+        <button id="btn-ja" class="active" onclick="setLang('ja')">JP</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-icon">
+      <img src="/mozai/icon.svg" alt="mozai">
+    </div>
+
+    <h1>mozai</h1>
+    <p class="hero-tagline ja">プライバシーを守る、モザイクカメラ</p>
+    <p class="hero-tagline en">Privacy-first mosaic camera</p>
+    <p class="hero-desc ja">SNSに上げる前に、顔や個人情報をワンタップで自動モザイク処理。すべての処理は端末内で完結します。</p>
+    <p class="hero-desc en">Automatically mosaic faces and personal info before you share — all processing happens right on your device.</p>
+
+    <div class="store-buttons">
+      <a href="#" class="store-btn">
+        <img class="ja" src="/assets/badges/app-store-badge-ja.svg" alt="App Store からダウンロード">
+        <img class="en" src="/assets/badges/app-store-badge-en.svg" alt="Download on the App Store">
+      </a>
+      <a href="#" class="store-btn">
+        <img class="ja" src="/assets/badges/google-play-badge-ja.svg" alt="Google Play で手に入れよう">
+        <img class="en" src="/assets/badges/google-play-badge-en.svg" alt="Get it on Google Play">
+      </a>
+    </div>
+    <p class="hero-note ja">近日公開予定</p>
+    <p class="hero-note en">Coming soon</p>
+  </div>
+
+  <main>
+
+    <!-- Screenshots -->
+    <section>
+      <div class="section-label ja">スクリーンショット</div>
+      <div class="section-label en">Screenshots</div>
+      <div class="screenshots">
+
+        <!-- Screen 1: Select who to keep unmosaicked -->
+        <div>
+          <div class="screen-shot">
+            <img src="/mozai/images/1.webp" alt="残す人物を選択する画面" loading="lazy">
+          </div>
+          <p class="screen-caption ja">残したい人だけタップで選択</p>
+          <p class="screen-caption en">Tap to keep specific people unmosaicked</p>
+        </div>
+
+        <!-- Screen 2: Manual fine-tuning -->
+        <div>
+          <div class="screen-shot">
+            <img src="/mozai/images/2.webp" alt="AI検出結果を微調整する画面" loading="lazy">
+          </div>
+          <p class="screen-caption ja">検出漏れも微調整で完璧に</p>
+          <p class="screen-caption en">Fine-tune every detected region</p>
+        </div>
+
+        <!-- Screen 3: Video processing -->
+        <div>
+          <div class="screen-shot">
+            <img src="/mozai/images/3.webp" alt="動画をモザイク処理している画面" loading="lazy">
+          </div>
+          <p class="screen-caption ja">動画も自動でモザイク処理</p>
+          <p class="screen-caption en">Videos get mosaiced automatically too</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section>
+      <div class="section-label ja">機能</div>
+      <div class="section-label en">Features</div>
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L20 6V11C20 16.5 12 21 12 21C12 21 4 16.5 4 11V6Z"/>
+              <path d="M9 11L11 13L15 9"/>
+            </svg>
+          </div>
+          <h3 class="ja">AI自動検出</h3>
+          <h3 class="en">AI Auto-Detection</h3>
+          <p class="ja">顔・テキスト・ナンバープレートをAIがリアルタイムで検出し、ワンタップでモザイク処理。</p>
+          <p class="en">AI detects faces, text, and license plates in real time. Mosaic them all with a single tap.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20L20 4"/>
+              <path d="M4 14L9 19L21 7" opacity="0"/>
+              <rect x="3" y="3" width="8" height="8" rx="1.5"/>
+              <path d="M15 9L21 3M21 3H16M21 3V8"/>
+              <path d="M6 21L11 16"/>
+            </svg>
+          </div>
+          <h3 class="ja">手動微調整</h3>
+          <h3 class="en">Manual Fine-Tuning</h3>
+          <p class="ja">検出漏れも安心。範囲の追加・回転・サイズ変更で思い通りに仕上げられます。</p>
+          <p class="en">Missed a spot? Add, rotate, and resize regions manually to finish it exactly your way.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="23 7 16 12 23 17 23 7"/>
+              <rect x="1" y="5" width="15" height="14" rx="2"/>
+            </svg>
+          </div>
+          <h3 class="ja">動画にも対応</h3>
+          <h3 class="en">Video Support</h3>
+          <p class="ja">タイムライン上で顔を検出し追跡。動画のプライバシーもしっかり保護します。</p>
+          <p class="en">Faces are detected and tracked across the timeline, keeping your videos private too.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FBBF24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L20 6V11C20 16.5 12 21 12 21C12 21 4 16.5 4 11V6Z"/>
+            </svg>
+          </div>
+          <h3 class="ja">100%オフライン処理</h3>
+          <h3 class="en">100% On-Device</h3>
+          <p class="ja">写真・動画はクラウドに送信されません。すべての処理は端末内で完結します。</p>
+          <p class="en">Your photos and videos are never uploaded. Every bit of processing stays on your device.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Privacy concept -->
+    <section>
+      <div class="section-label ja">プライバシーへのこだわり</div>
+      <div class="section-label en">Our Privacy Promise</div>
+      <div class="concept-card">
+        <p class="ja">mozai は「共有する前に、守る」をコンセプトにしたアプリです。<br><br>SNSに写真や動画を投稿する瞬間、映り込んだ顔や個人情報が意図せず公開されてしまうことがあります。mozai はその一歩手前で、AIによる自動検出とワンタップの操作で、安心してシェアできる状態をつくります。画像データが外部サーバーに送られることは一切ありません。</p>
+        <p class="en">mozai is built around one idea: protect before you share.<br><br>The moment you post a photo or video, faces and personal details caught in the frame can end up exposed without you meaning to. mozai steps in right before that — AI detection and one-tap mosaicing let you share with confidence. Your image data is never sent to any external server.</p>
+        <div class="concept-stats">
+          <div class="concept-stat">
+            <div class="num">0</div>
+            <div class="label ja">クラウド送信</div>
+            <div class="label en">Cloud uploads</div>
+          </div>
+          <div class="concept-stat">
+            <div class="num">100%</div>
+            <div class="label ja">端末内処理</div>
+            <div class="label en">On-device</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/mozai/privacy.html" class="ja">プライバシーポリシー</a>
+      <a href="/mozai/privacy.html" class="en">Privacy Policy</a>
+      <a href="mailto:support@labo.mobi">support@labo.mobi</a>
+    </div>
+    <p>&copy; labo.mobi</p>
+    <div class="footer-trademark ja">
+      <p>Apple、Appleのロゴ、App Store は米国その他の国で登録された Apple Inc. の商標です。</p>
+      <p>Google Play および Google Play ロゴは Google LLC の商標です。</p>
+    </div>
+    <div class="footer-trademark en">
+      <p>Apple, the Apple logo, and App Store are trademarks of Apple Inc., registered in the U.S. and other countries.</p>
+      <p>Google Play and the Google Play logo are trademarks of Google LLC.</p>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "mozai",
+    "description": "顔・テキスト・ナンバープレートをAIが自動でモザイク処理するプライバシー保護カメラアプリ",
+    "applicationCategory": "PhotoApplication",
+    "operatingSystem": "iOS, Android",
+    "url": "https://labo.mobi/mozai/",
+    "author": {
+      "@type": "Organization",
+      "name": "labo.mobi",
+      "url": "https://labo.mobi"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "JPY"
+    }
+  }
+  </script>
+  <script>
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+  </script>
+
+</body>
+</html>
