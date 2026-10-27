@@ -3,6 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EPC4T3EM94"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EPC4T3EM94');
+  </script>
   <title>liftry — 記録から、トレーニングへ。</title>
   <meta name="description" content="liftry はウェイトトレーニングの記録・分析アプリです。重量・レップ・セットを手軽に記録し、PR（自己記録）の更新を追い続けよう。">
   <link rel="icon" type="image/svg+xml" href="/liftry/icon.svg">
@@ -334,6 +342,9 @@
       .feature-grid { grid-template-columns: 1fr; }
       .header-right { gap: 1rem; }
     }
+    footer .analytics-notice { margin-bottom: 0.5rem; }
+    footer .analytics-notice a { color: inherit; }
+
   </style>
 </head>
 <body>
@@ -492,6 +503,10 @@
       <a href="/liftry/terms.html" class="en">Terms of Service</a>
       <a href="mailto:support@labo.mobi">support@labo.mobi</a>
     </div>
+    <p class="analytics-notice">
+      <span class="ja">当サイトはアクセス解析のため Google アナリティクスを使用しています（<a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener">詳細</a>）。</span>
+      <span class="en">This site uses Google Analytics for traffic analysis (<a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">details</a>).</span>
+    </p>
     <p>&copy; labo.mobi</p>
     <div class="footer-trademark ja">
       <p>Apple、Appleのロゴ、App Store は米国その他の国で登録された Apple Inc. の商標です。</p>
