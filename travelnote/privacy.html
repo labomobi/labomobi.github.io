@@ -3,6 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      var lang = null;
+      try { lang = localStorage.getItem('lang'); } catch (e) {}
+      if (lang !== 'ja' && lang !== 'en') {
+        lang = /^ja\b/i.test(navigator.language || '') ? 'ja' : 'en';
+      }
+      document.documentElement.lang = lang;
+    })();
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EPC4T3EM94"></script>
   <script>
@@ -184,7 +194,7 @@
     <!-- Japanese -->
     <div class="ja">
       <h1>プライバシーポリシー</h1>
-      <p class="updated">最終更新日：2026年8月17日</p>
+      <p class="updated">最終更新日：2026年11月6日</p>
       <p class="intro">TravelNote（以下「本アプリ」）におけるユーザーの個人情報の取り扱いについて、以下のとおりプライバシーポリシーを定めます。</p>
 
       <h2>1. 収集する情報</h2>
@@ -195,6 +205,7 @@
         <li>広告識別子（広告配信のため）</li>
         <li>カメラ・写真ライブラリへのアクセス（搭乗券のスキャン時のみ使用。画像はデバイス上で処理され、サーバーには送信されません）</li>
         <li>クラッシュ・エラー情報（アプリの安定性向上のため。氏名や連絡先などの個人情報は含まれません）</li>
+        <li>アプリの利用状況（画面の表示、セッション、機能の利用）、アプリの識別子、広告識別子（Android）、端末・OS の情報、IP アドレスから推定したおおよその地域</li>
       </ul>
 
       <h2>2. 情報の利用目的</h2>
@@ -204,6 +215,7 @@
         <li>搭乗券の読み取りによるフライト情報の自動入力</li>
         <li>広告の配信</li>
         <li>アプリの改善・不具合対応</li>
+        <li>アプリの利用状況の分析</li>
       </ul>
 
       <h2>3. 第三者への提供</h2>
@@ -213,6 +225,7 @@
         <li><strong>Google AdMob</strong>：広告の配信（広告識別子を使用）</li>
         <li><strong>Google / Apple</strong>：ソーシャルログイン機能（利用する場合）</li>
         <li><strong>Sentry</strong>：クラッシュ・エラーレポートの収集（個人を特定できる情報は送信されません）</li>
+        <li><strong>Google Analytics for Firebase</strong>：アプリの利用状況の分析</li>
       </ul>
       <p>上記以外の第三者に個人情報を提供することはありません。</p>
 
@@ -222,6 +235,8 @@
 
       <h2>5. Cookie・トラッキング</h2>
       <p>本アプリはCookieを使用しません。Google AdMobは広告効果の測定のため広告識別子を使用することがあります。端末の設定から広告識別子のリセットや追跡の制限が可能です。</p>
+      <p>本アプリは利用状況の分析に Google Analytics for Firebase を使用します。メールアドレスや、訪問先・便名などの旅行記録の内容は送信しません。分析データは広告のパーソナライズに使用しません。</p>
+      <p>欧州経済領域（EEA）、英国、スイスの利用者については、同意を得た場合にのみ分析を行います。広告および分析に関する選択は、アプリのメニューからいつでも変更できます。</p>
 
       <h2>6. プライバシーポリシーの変更</h2>
       <p>本ポリシーは必要に応じて改定することがあります。重要な変更がある場合はアプリ内または本ページにてお知らせします。</p>
@@ -234,7 +249,7 @@
     <!-- English -->
     <div class="en">
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: August 17, 2026</p>
+      <p class="updated">Last updated: November 6, 2026</p>
       <p class="intro">This Privacy Policy describes how TravelNote (the "App") handles your personal information.</p>
 
       <h2>1. Information We Collect</h2>
@@ -245,6 +260,7 @@
         <li>Advertising identifier (for ad delivery)</li>
         <li>Camera and photo library access (used only for scanning boarding passes; images are processed on-device and are not sent to our servers)</li>
         <li>Crash and error information (to improve app stability; does not include personal information such as your name or contact details)</li>
+        <li>App usage information (screens viewed, sessions, and features used), app identifiers, advertising identifier (Android), device and OS information, and approximate region inferred from your IP address</li>
       </ul>
 
       <h2>2. How We Use Your Information</h2>
@@ -254,6 +270,7 @@
         <li>Automatic flight data entry by scanning boarding passes</li>
         <li>Delivery of advertisements</li>
         <li>App improvement and bug fixes</li>
+        <li>Analysis of app usage</li>
       </ul>
 
       <h2>3. Third-Party Services</h2>
@@ -263,6 +280,7 @@
         <li><strong>Google AdMob</strong>: Ad delivery (uses advertising identifier)</li>
         <li><strong>Google / Apple</strong>: Social login (when used)</li>
         <li><strong>Sentry</strong>: Collection of crash and error reports (no personally identifiable information is sent)</li>
+        <li><strong>Google Analytics for Firebase</strong>: Analysis of app usage</li>
       </ul>
       <p>We do not share your personal information with any other third parties.</p>
 
@@ -272,6 +290,8 @@
 
       <h2>5. Cookies and Tracking</h2>
       <p>The App does not use cookies. Google AdMob may use advertising identifiers to measure ad performance. You can reset your advertising identifier or limit ad tracking in your device settings.</p>
+      <p>The App uses Google Analytics for Firebase to analyze app usage. We do not send your email address or the content of your travel records, such as destinations or flight numbers. Analytics data is not used for ad personalization.</p>
+      <p>For users in the European Economic Area (EEA), the UK, and Switzerland, we analyze app usage only with your consent. You can change your advertising and analytics choices at any time from the App's menu.</p>
 
       <h2>6. Changes to This Policy</h2>
       <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes through the App or on this page.</p>
@@ -292,11 +312,16 @@
   </footer>
 
   <script>
-    function setLang(lang) {
+    function applyLang(lang) {
       document.documentElement.lang = lang;
       document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     }
+    function setLang(lang) {
+      applyLang(lang);
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+    applyLang(document.documentElement.lang);
   </script>
 
 </body>
