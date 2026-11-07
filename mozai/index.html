@@ -3,6 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      var lang = null;
+      try { lang = localStorage.getItem('lang'); } catch (e) {}
+      if (lang !== 'ja' && lang !== 'en') {
+        lang = /^ja\b/i.test(navigator.language || '') ? 'ja' : 'en';
+      }
+      document.documentElement.lang = lang;
+    })();
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EPC4T3EM94"></script>
   <script>
@@ -550,6 +560,8 @@
     <div class="footer-links">
       <a href="/mozai/privacy.html" class="ja">プライバシーポリシー</a>
       <a href="/mozai/privacy.html" class="en">Privacy Policy</a>
+      <a href="/mozai/terms.html" class="ja">利用規約</a>
+      <a href="/mozai/terms.html" class="en">Terms of Use</a>
       <a href="mailto:support@labo.mobi">support@labo.mobi</a>
     </div>
     <p class="analytics-notice">
@@ -589,11 +601,16 @@
   }
   </script>
   <script>
-    function setLang(lang) {
+    function applyLang(lang) {
       document.documentElement.lang = lang;
       document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
     }
+    function setLang(lang) {
+      applyLang(lang);
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+    applyLang(document.documentElement.lang);
   </script>
 
 </body>

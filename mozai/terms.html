@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      var lang = null;
+      try { lang = localStorage.getItem('lang'); } catch (e) {}
+      if (lang !== 'ja' && lang !== 'en') {
+        lang = /^ja\b/i.test(navigator.language || '') ? 'ja' : 'en';
+      }
+      document.documentElement.lang = lang;
+    })();
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EPC4T3EM94"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EPC4T3EM94');
+  </script>
+  <title>利用規約 — mozai</title>
+  <link rel="icon" type="image/svg+xml" href="/mozai/icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #0D0800;
+      --surface:#1A1200;
+      --amber:  #FFBF24;
+      --amber2: #FCD34D;
+      --text:   #FFFFFF;
+      --muted:  rgba(255,255,255,0.38);
+      --sub:    rgba(255,255,255,0.65);
+      --border: rgba(255,191,36,0.18);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .header-logo-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .header-logo-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .header-logo-name span { color: var(--amber); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .back-link {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--amber2); }
+
+    .lang-switch {
+      display: flex;
+      border: 1px solid rgba(255,255,255,0.2);
+      overflow: hidden;
+    }
+    .lang-switch button {
+      background: none;
+      border: none;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: all 0.15s;
+    }
+    .lang-switch button.active {
+      background: var(--amber);
+      color: var(--bg);
+    }
+    .lang-switch button:not(.active):hover { color: var(--text); }
+
+    /* ── Content ── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.3rem;
+    }
+    .updated {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+    .intro { margin-bottom: 2rem; font-size: 0.94rem; color: var(--sub); }
+
+    h2 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    p, li { font-size: 0.92rem; color: var(--sub); }
+    p + p { margin-top: 0.6rem; }
+    ul { padding-left: 1.5rem; margin-top: 0.5rem; }
+    li { margin-bottom: 0.3rem; }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { color: var(--amber2); }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ── Lang visibility ── */
+    [lang="ja"] .en,
+    [lang="en"] .ja { display: none; }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem; }
+      main { padding: 2.5rem 1.25rem 4rem; }
+      .header-right { gap: 1rem; }
+    }
+    footer .analytics-notice { margin-bottom: 0.5rem; }
+    footer .analytics-notice a { color: inherit; }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/mozai/" class="header-logo">
+      <img class="header-logo-icon" src="/mozai/icon.svg" alt="mozai">
+      <span class="header-logo-name">mo<span>zai</span></span>
+    </a>
+    <div class="header-right">
+      <a href="/mozai/" class="back-link ja">← アプリページへ</a>
+      <a href="/mozai/" class="back-link en">← App Page</a>
+      <div class="lang-switch">
+        <button id="btn-ja" class="active" onclick="setLang('ja')">JP</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Japanese -->
+    <div class="ja">
+      <h1>利用規約</h1>
+      <p class="updated">最終更新日：2026年11月5日</p>
+      <p class="intro">本利用規約（以下「本規約」）は、labo.mobi（以下「当方」）が提供するアプリ「mozai」（以下「本アプリ」）の利用条件を定めるものです。本アプリをご利用いただくことで、本規約に同意したものとみなします。</p>
+
+      <h2>1. サービスの概要</h2>
+      <p>本アプリは、写真・動画に含まれる顔、テキスト、ナンバープレート、画面などを端末内で自動検出し、モザイク等の加工を行うモバイルアプリケーションです。アカウント登録は不要で、現在は無料でご利用いただけます。本アプリには広告が表示されます。</p>
+
+      <h2>2. 利用資格</h2>
+      <p>本アプリは13歳以上の方を対象としています。13歳未満の方は本アプリを利用できません。未成年の方は、保護者の同意を得たうえでご利用ください。</p>
+
+      <h2>3. 写真・動画の取り扱い</h2>
+      <ul>
+        <li>お客様が本アプリで加工する写真・動画の権利は、お客様または正当な権利者に帰属します。当方がこれらの権利を取得することはありません。</li>
+        <li>撮影・選択した写真・動画は端末内で処理され、当方のサーバーには送信されません。詳しくは<a href="/mozai/privacy.html">プライバシーポリシー</a>をご確認ください。</li>
+        <li>加工した写真・動画の保存、共有、公開は、お客様ご自身の判断と責任において行ってください。</li>
+        <li>写真・動画は当方で保管していないため、端末からの削除や紛失が生じても当方では復元できません。</li>
+      </ul>
+
+      <h2>4. 自動検出・モザイク処理に関するご注意</h2>
+      <p>本アプリは、個人情報や映り込みの保護を支援するものであり、保護を保証するものではありません。公開・共有の前に、必ずお客様ご自身の目で加工結果をご確認ください。</p>
+      <ul>
+        <li>自動検出には、検出漏れや誤検出が生じることがあります。特に動画では、一部のフレームで検出されない場合があります。必要に応じて手動で調整してください。</li>
+        <li>書類等の検出は、対応する書類の種類や言語、撮影状態によって精度が異なります。</li>
+        <li>モザイクの強度や技術の進歩によっては、元の内容が推測・復元される可能性があります。特に機微な情報は、公開しないことをご検討ください。</li>
+        <li>動画の音声は加工されず、そのまま保持されます。音声に含まれる氏名や会話の内容などにご注意ください。</li>
+        <li>加工後のファイルには、アプリ名、処理日時、改ざん検出用の署名情報が埋め込まれる場合があります。</li>
+      </ul>
+
+      <h2>5. 広告</h2>
+      <p>本アプリには、第三者が提供する広告が表示されます。広告の内容や、広告から移動した先のサービスについて、当方は保証しません。広告主との取引やトラブルは、お客様と広告主との間で解決していただきます。</p>
+
+      <h2>6. 禁止行為</h2>
+      <p>以下の行為を禁止します。</p>
+      <ul>
+        <li>法令または公序良俗に反する利用、犯罪行為に関連する利用</li>
+        <li>他者の肖像権、プライバシー、名誉、著作権その他の権利を侵害する行為</li>
+        <li>誹謗中傷、嫌がらせ、なりすましなど、他者を害する目的での利用</li>
+        <li>わいせつな内容や児童の性的搾取に関わる内容の加工・作成</li>
+        <li>証拠の隠滅、改ざん、または事実を偽る目的での利用</li>
+        <li>著作権表示や透かしなどの権利表示を、権利者の許可なく隠す行為</li>
+        <li>本アプリおよび同梱する機械学習モデルのリバースエンジニアリング、改ざん、複製、抽出（法令で認められる場合を除きます）</li>
+        <li>広告の不正なクリックや表示など、広告配信を妨げる行為</li>
+        <li>フィードバック機能への大量送信など、本アプリの運営を妨げる行為</li>
+      </ul>
+
+      <h2>7. 知的財産</h2>
+      <p>本アプリに関する著作権、商標権その他の知的財産権は、当方または正当な権利者に帰属します。当方はお客様に対し、本規約に従って本アプリを個人的に利用するための、譲渡できない非独占的な権利を許諾します。</p>
+      <p>本アプリに含まれるオープンソースソフトウェアには、それぞれのライセンスが適用されます。一覧はアプリの設定画面からご確認いただけます。</p>
+      <p>設定画面からお寄せいただいたご意見は、本アプリの改善のために、当方が無償で利用できるものとします。ご意見の本文には、個人情報を含めないでください。</p>
+
+      <h2>8. 免責事項</h2>
+      <p>本アプリは現状有姿で提供されます。当方は、本アプリの正確性、完全性、特定の目的への適合性、および継続的な提供について保証しません。また、すべての端末やOSでの動作を保証するものではありません。</p>
+      <p>当方の軽過失によりお客様に損害が生じた場合、当方が賠償する範囲は、現実に発生した通常かつ直接の損害に限られます。当方の故意または重大な過失による場合は、この限りではありません。</p>
+      <p>お客様が保存・共有・公開した写真・動画に起因して、お客様と第三者との間に紛争が生じた場合は、お客様の責任において解決していただきます。ただし、当方の責めに帰すべき事由による場合を除きます。</p>
+
+      <h2>9. サービスの変更・終了</h2>
+      <p>当方は、本アプリの内容を変更し、または提供を停止・終了することがあります。重要な変更や提供の終了については、可能な限り事前にアプリ内または本ページにてお知らせします。</p>
+
+      <h2>10. アプリストアの規約</h2>
+      <p>本アプリの入手および更新には、本規約に加えて、App Store（iOS）またはGoogle Play（Android）の規約が適用されます。本アプリに関する責任は、AppleやGoogleではなく当方が負います。</p>
+
+      <h2>11. 利用規約の変更</h2>
+      <p>当方は、法令に従い、本規約を改定することがあります。改定する場合は、改定後の内容と効力発生日をアプリ内または本ページにてお知らせします。効力発生日以降も本アプリを継続してご利用いただいた場合、改定後の規約に同意したものとみなします。</p>
+
+      <h2>12. 準拠法・管轄</h2>
+      <p>本規約は日本法に準拠し、解釈されます。本規約に関する紛争については、法令に別段の定めがある場合を除き、東京地方裁判所を第一審の専属的合意管轄裁判所とします。本規約は、お客様の居住地の法令によって認められた、消費者としての強行法規上の権利を制限するものではありません。</p>
+
+      <h2>13. お問い合わせ</h2>
+      <p>本規約に関するご質問は以下までご連絡ください。</p>
+      <p>Email: <a href="mailto:support@labo.mobi">support@labo.mobi</a></p>
+    </div>
+
+    <!-- English -->
+    <div class="en">
+      <h1>Terms of Use</h1>
+      <p class="updated">Last updated: November 5, 2026</p>
+      <p class="intro">These Terms of Use ("Terms") govern your use of mozai (the "App") provided by labo.mobi ("we" or "us"). By using the App, you agree to these Terms.</p>
+
+      <h2>1. About the App</h2>
+      <p>mozai is a mobile application that detects faces, text, license plates, screens, and similar content in photos and videos on your device and applies mosaic or similar effects. No account is required, and the App is currently free to use. The App displays advertisements.</p>
+
+      <h2>2. Eligibility</h2>
+      <p>The App is intended for users aged 13 and older. Users under 13 may not use the App. If you are a minor, please obtain a parent's or guardian's consent before using the App.</p>
+
+      <h2>3. Your Photos and Videos</h2>
+      <ul>
+        <li>All rights in the photos and videos you process with the App remain with you or their rightful owners. We do not acquire any rights in them.</li>
+        <li>Photos and videos you capture or select are processed on your device and are not sent to our servers. See our <a href="/mozai/privacy.html">Privacy Policy</a> for details.</li>
+        <li>You are solely responsible for deciding whether to save, share, or publish processed photos and videos.</li>
+        <li>Because we do not store your photos or videos, we cannot recover them if they are deleted from your device or lost.</li>
+      </ul>
+
+      <h2>4. Limits of Automatic Detection and Mosaic Processing</h2>
+      <p>The App helps you protect personal information and unintended content, but it does not guarantee that protection. Always check the processed result with your own eyes before sharing or publishing it.</p>
+      <ul>
+        <li>Automatic detection may miss content or flag the wrong content. In videos, content may go undetected in some frames. Adjust the result manually where necessary.</li>
+        <li>Document detection accuracy varies by document type, language, and image conditions.</li>
+        <li>Depending on the mosaic strength and advances in technology, the original content may be inferred or restored. Consider not publishing particularly sensitive information at all.</li>
+        <li>Video audio is not processed and is kept as is. Take care with names and conversations in the audio.</li>
+        <li>Processed files may have the App name, processing date and time, and signature information for tamper detection embedded in them.</li>
+      </ul>
+
+      <h2>5. Advertisements</h2>
+      <p>The App displays advertisements provided by third parties. We make no warranties regarding the content of advertisements or any services you reach through them. Any dealings or disputes with advertisers are solely between you and the advertiser.</p>
+
+      <h2>6. Prohibited Conduct</h2>
+      <p>You may not:</p>
+      <ul>
+        <li>Use the App in violation of any law or public policy, or in connection with criminal activity</li>
+        <li>Infringe on the portrait, privacy, reputation, copyright, or other rights of others</li>
+        <li>Use the App to harm others, including through defamation, harassment, or impersonation</li>
+        <li>Process or create obscene content or content involving the sexual exploitation of children</li>
+        <li>Use the App to destroy or tamper with evidence, or to misrepresent facts</li>
+        <li>Conceal copyright notices, watermarks, or other rights information without the rights holder's permission</li>
+        <li>Reverse engineer, modify, reproduce, or extract the App or its bundled machine-learning models, except as permitted by law</li>
+        <li>Interfere with ad delivery, including through fraudulent clicks or impressions</li>
+        <li>Interfere with the operation of the App, including by sending excessive messages through the feedback feature</li>
+      </ul>
+
+      <h2>7. Intellectual Property</h2>
+      <p>All copyrights, trademarks, and other intellectual property rights in the App belong to us or their rightful owners. We grant you a non-transferable, non-exclusive right to use the App for personal purposes in accordance with these Terms.</p>
+      <p>Open-source software included in the App is subject to its respective licenses, which you can view from the App's Settings screen.</p>
+      <p>We may use feedback you send from the Settings screen, free of charge, to improve the App. Please do not include personal information in your message.</p>
+
+      <h2>8. Disclaimer</h2>
+      <p>The App is provided "as is." We make no warranties regarding its accuracy, completeness, fitness for a particular purpose, or uninterrupted availability, and we do not guarantee that it will work on every device or operating system.</p>
+      <p>If you suffer damages due to our ordinary negligence, our liability is limited to ordinary, direct damages actually incurred. This limitation does not apply in cases of our willful misconduct or gross negligence.</p>
+      <p>You are responsible for resolving any dispute with a third party arising from photos or videos you save, share, or publish, except where the dispute is attributable to us.</p>
+
+      <h2>9. Changes and Termination</h2>
+      <p>We may modify, suspend, or discontinue the App. Where possible, we will give advance notice of significant changes or discontinuation through the App or on this page.</p>
+
+      <h2>10. App Store Terms</h2>
+      <p>In addition to these Terms, the terms of the App Store (iOS) or Google Play (Android) apply to your download and updates of the App. We, not Apple or Google, are responsible for the App.</p>
+
+      <h2>11. Changes to These Terms</h2>
+      <p>We may update these Terms in accordance with applicable law. When we do, we will announce the updated Terms and their effective date through the App or on this page. Continued use of the App on or after the effective date constitutes your acceptance of the updated Terms.</p>
+
+      <h2>12. Governing Law</h2>
+      <p>These Terms are governed by and construed in accordance with the laws of Japan. Unless otherwise required by law, any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the Tokyo District Court in the first instance. Nothing in these Terms limits any mandatory consumer rights you have under the laws of your place of residence.</p>
+
+      <h2>13. Contact</h2>
+      <p>For questions about these Terms, please contact us:</p>
+      <p>Email: <a href="mailto:support@labo.mobi">support@labo.mobi</a></p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p class="analytics-notice">
+      <span class="ja">当サイトはアクセス解析のため Google アナリティクスを使用しています（<a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener">詳細</a>）。</span>
+      <span class="en">This site uses Google Analytics for traffic analysis (<a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">details</a>).</span>
+    </p>
+    <p>&copy; labo.mobi</p>
+  </footer>
+
+  <script>
+    function applyLang(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+    function setLang(lang) {
+      applyLang(lang);
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+    applyLang(document.documentElement.lang);
+  </script>
+
+</body>
+</html>
