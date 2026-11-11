@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    (function () {
+      var lang = null;
+      try { lang = localStorage.getItem('lang'); } catch (e) {}
+      if (lang !== 'ja' && lang !== 'en') {
+        lang = /^ja\b/i.test(navigator.language || '') ? 'ja' : 'en';
+      }
+      document.documentElement.lang = lang;
+    })();
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EPC4T3EM94"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EPC4T3EM94');
+  </script>
+  <title>プライバシーポリシー — medanote</title>
+  <link rel="icon" type="image/svg+xml" href="/medanote/icon.svg">
+  <link rel="icon" type="image/png" sizes="512x512" href="/medanote/icon-512.png">
+  <link rel="apple-touch-icon" href="/medanote/apple-touch-icon.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #F4FBFD;
+      --surface:#FFFFFF;
+      --water:  #2E9BC6;
+      --water2: #1F7FA6;
+      --hi:     #FF8C78;
+      --text:   #1F3440;
+      --muted:  #7C929C;
+      --sub:    #44606C;
+      --border: #D3EAF2;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Maru Gothic ProN', 'Hiragino Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .header-logo-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .header-logo-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .header-logo-name span { color: var(--water); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .back-link {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--water); }
+
+    .lang-switch {
+      display: flex;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .lang-switch button {
+      background: none;
+      border: none;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      transition: all 0.15s;
+    }
+    .lang-switch button.active {
+      background: var(--water);
+      color: #fff;
+    }
+    .lang-switch button:not(.active):hover { color: var(--text); }
+
+    /* ── Content ── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .updated {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+    .intro { margin-bottom: 2rem; font-size: 0.94rem; color: var(--sub); }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    p, li { font-size: 0.92rem; color: var(--sub); }
+    p + p { margin-top: 0.6rem; }
+    ul { padding-left: 1.5rem; margin-top: 0.5rem; }
+    ul + p { margin-top: 0.75rem; }
+    li { margin-bottom: 0.3rem; }
+    a { color: var(--water); text-decoration: none; }
+    a:hover { color: var(--water2); }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ── Lang visibility ── */
+    [lang="ja"] .en,
+    [lang="en"] .ja { display: none; }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem; }
+      main { padding: 2.5rem 1rem 4rem; }
+      .header-right { gap: 1rem; }
+    }
+    footer .analytics-notice { margin-bottom: 0.5rem; }
+    footer .analytics-notice a { color: inherit; }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/medanote/" class="header-logo">
+      <img class="header-logo-icon" src="/medanote/icon.svg" alt="medanote">
+      <span class="header-logo-name">meda<span>note</span></span>
+    </a>
+    <div class="header-right">
+      <a href="/medanote/" class="back-link ja">← アプリページへ</a>
+      <a href="/medanote/" class="back-link en">← App Page</a>
+      <div class="lang-switch">
+        <button id="btn-ja" class="active" onclick="setLang('ja')">JP</button>
+        <button id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Japanese -->
+    <div class="ja">
+      <h1>プライバシーポリシー</h1>
+      <p class="updated">最終更新日：2026年11月2日</p>
+      <p class="intro">medanote（以下「本アプリ」）における利用者の情報の取り扱いについて、以下のとおりプライバシーポリシーを定めます。</p>
+
+      <h2>1. 収集する情報</h2>
+      <p>本アプリが扱う情報は以下のみです。氏名・メールアドレス・電話番号・位置情報・写真など、利用者個人を特定する情報は収集しません。アカウント登録もありません。</p>
+      <ul>
+        <li>ゲームのデータ（メダカ・図鑑・コイン・エサ・水槽の状態など）および設定（おしらせのオン／オフなど）。端末内にのみ保存します</li>
+        <li>広告識別子など、広告配信のために Google AdMob が収集する情報（詳しくは「4. 第三者への提供」）</li>
+        <li>アプリの利用状況（掛け合わせ・エサやり・ショップでの購入などの操作、生まれたメダカの品種、端末・OS の種類、アプリのバージョンなど）。Google Analytics for Firebase で収集します（詳しくは「4. 第三者への提供」）</li>
+      </ul>
+
+      <h2>2. 情報の利用目的</h2>
+      <ul>
+        <li>ゲームの進み具合の保存</li>
+        <li>お世話のリマインド通知</li>
+        <li>広告の配信（リワード広告の視聴によるエサ・コインの補充）</li>
+        <li>アプリの改善（機能の使われ方の分析、ゲームバランスの調整）</li>
+      </ul>
+
+      <h2>3. 通知について</h2>
+      <p>本アプリは、メダカのお世話を忘れないためのおしらせを、端末内で予約して表示します。通知のためにサーバーへ情報を送ることはありません。おしらせはアプリ内の「せってい」または端末の設定から、いつでもオン／オフできます。</p>
+
+      <h2>4. 第三者への提供</h2>
+      <p>本アプリは広告配信とアプリの利用状況の分析のため、以下のサービスを利用しています。</p>
+      <ul>
+        <li><strong>Google AdMob</strong>（Google LLC）：広告の配信と効果の測定。広告識別子、IP アドレス、端末やアプリに関する情報などが Google に送信されることがあります。詳しくは <a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener">Google のパートナーのサイトやアプリでのデータ使用</a> をご覧ください</li>
+        <li><strong>Google Analytics for Firebase</strong>（Google LLC）：アプリの利用状況の分析。アプリごとに発行される識別子、操作の記録、端末やアプリに関する情報などが Google に送信されます。個人を特定する目的では利用しません。詳しくは <a href="https://firebase.google.com/support/privacy?hl=ja" target="_blank" rel="noopener">Firebase のプライバシーとセキュリティ</a> をご覧ください</li>
+      </ul>
+      <p>水槽や図鑑の内容などのゲームのデータを、当方のサーバーへ送信することはありません。上記以外の第三者に情報を提供することはありません。</p>
+
+      <h2>5. データの保管</h2>
+      <p>ゲームのデータは端末内に保存し、当方のサーバーには保存しません。端末のバックアップ（iCloud バックアップ、Google のバックアップなど）の設定によっては、OS のバックアップに含まれることがあります。</p>
+
+      <h2>6. 広告識別子とトラッキング</h2>
+      <p>iOS では、広告識別子を使ったトラッキングを行う前に、端末の許可ダイアログで同意をお願いすることがあります。欧州経済領域（EEA）・英国などの地域では、広告のパーソナライズについて同意をお願いすることがあります。</p>
+      <p>許可しない場合でも、本アプリは問題なく遊べます（広告はパーソナライズされない形で表示されます）。広告識別子のリセットやトラッキングの制限は、端末の設定からいつでも行えます。</p>
+
+      <h2>7. お子さまのご利用について</h2>
+      <p>本アプリはお子さまにも楽しんでいただけるよう、ひらがな中心の表示にしています。本アプリ自体は、お子さまを含む利用者の個人情報を収集しません。利用状況の分析も、個人を特定しない形で行います。</p>
+      <p>広告は Google AdMob を通じて表示されます。保護者の方は、必要に応じて端末のペアレンタルコントロールや広告の設定をご利用ください。</p>
+
+      <h2>8. プライバシーポリシーの変更</h2>
+      <p>本ポリシーは必要に応じて改定することがあります。重要な変更がある場合はアプリ内または本ページにてお知らせします。</p>
+
+      <h2>9. お問い合わせ</h2>
+      <p>プライバシーに関するご質問は以下までご連絡ください。</p>
+      <p>Email: <a href="mailto:support@labo.mobi">support@labo.mobi</a></p>
+    </div>
+
+    <!-- English -->
+    <div class="en">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: November 2, 2026</p>
+      <p class="intro">This Privacy Policy describes how medanote (the "App") handles information about its users.</p>
+
+      <h2>1. Information We Handle</h2>
+      <p>The App only handles the following. It does not collect information that identifies you, such as your name, email address, phone number, location, or photos. There is no account registration.</p>
+      <ul>
+        <li>Game data (your medaka, the collection book, coins, food, aquarium state, etc.) and settings (such as notifications on/off), stored on your device only</li>
+        <li>Information collected by Google AdMob for ad delivery, such as the advertising identifier (see "4. Third-Party Services")</li>
+        <li>App usage (actions such as breeding, feeding, and shop purchases, the varieties of medaka born, device and OS type, app version, etc.), collected with Google Analytics for Firebase (see "4. Third-Party Services")</li>
+      </ul>
+
+      <h2>2. How We Use Information</h2>
+      <ul>
+        <li>Saving your game progress</li>
+        <li>Care reminder notifications</li>
+        <li>Delivering ads (watching rewarded ads to refill food and coins)</li>
+        <li>Improving the App (analyzing how features are used and tuning game balance)</li>
+      </ul>
+
+      <h2>3. Notifications</h2>
+      <p>The App schedules care reminders locally on your device. No information is sent to any server for notifications. You can turn reminders on or off at any time from Settings in the App or from your device settings.</p>
+
+      <h2>4. Third-Party Services</h2>
+      <p>The App uses the following services to deliver ads and analyze app usage:</p>
+      <ul>
+        <li><strong>Google AdMob</strong> (Google LLC): Ad delivery and measurement. Information such as the advertising identifier, IP address, and device and app information may be sent to Google. For details, see <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from sites or apps that use its services</a></li>
+        <li><strong>Google Analytics for Firebase</strong> (Google LLC): App usage analysis. An identifier issued for each app installation, records of in-app actions, and device and app information are sent to Google. This information is not used to identify you. For details, see <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacy and Security in Firebase</a></li>
+      </ul>
+      <p>Your game data, such as the contents of your aquarium and collection book, is never sent to our servers. We do not share information with any other third parties.</p>
+
+      <h2>5. Data Storage</h2>
+      <p>Game data is stored on your device and is not stored on our servers. Depending on your device's backup settings (such as iCloud Backup or Google backup), it may be included in your operating system's backups.</p>
+
+      <h2>6. Advertising Identifier and Tracking</h2>
+      <p>On iOS, the App may ask for your permission through the system dialog before using the advertising identifier for tracking. In regions such as the European Economic Area (EEA) and the UK, the App may ask for your consent to personalized ads.</p>
+      <p>The App works fine if you decline (ads are shown without personalization). You can reset your advertising identifier or limit tracking at any time in your device settings.</p>
+
+      <h2>7. Children</h2>
+      <p>The App is designed so that children can enjoy it too, with simple Japanese text. The App itself does not collect personal information from any user, including children. App usage is analyzed without identifying individuals.</p>
+      <p>Ads are shown through Google AdMob. Parents may use the device's parental controls and ad settings as needed.</p>
+
+      <h2>8. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes through the App or on this page.</p>
+
+      <h2>9. Contact</h2>
+      <p>For questions about this Privacy Policy, please contact us:</p>
+      <p>Email: <a href="mailto:support@labo.mobi">support@labo.mobi</a></p>
+    </div>
+
+  </main>
+
+  <footer>
+    <p class="analytics-notice">
+      <span class="ja">当サイトはアクセス解析のため Google アナリティクスを使用しています（<a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener">詳細</a>）。</span>
+      <span class="en">This site uses Google Analytics for traffic analysis (<a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">details</a>).</span>
+    </p>
+    <p>&copy; labo.mobi</p>
+  </footer>
+
+  <script>
+    function applyLang(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+    function setLang(lang) {
+      applyLang(lang);
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+    applyLang(document.documentElement.lang);
+  </script>
+
+</body>
+</html>
